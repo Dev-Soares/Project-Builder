@@ -45,8 +45,6 @@ export const useDiagramActions = () => {
 
         } catch (error) {
             console.error('Error creating diagram:', error);
-            errorAlert('Erro ao criar o diagrama. Tente novamente.');
-
         }
     };
 
