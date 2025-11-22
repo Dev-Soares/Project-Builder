@@ -8,7 +8,7 @@ datasource db {
   // Use the mongodb provider
   provider = "mongodb"
   // The connection string is loaded from your .env file
-  url      = env("DB_URI")
+  url      = env("DATABASE_URL")
 }
 
 

@@ -6,34 +6,9 @@ services:
       context: .
     container_name: diagram-service
     environment:
-      - DB_URI=${DB_URI}
-    depends_on:
-      - db
+      - DATABASE_URL=${DATABASE_URL}
     volumes:
       - .:/app
     ports:
       - "3000:3000"
     command: npm run dev
- 
-  db:
-    image: mongo:latest
-    container_name: diagram-mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: mongo
-      MONGO_INITDB_ROOT_PASSWORD: mongo
-      MONGO_INITDB_DATABASE: diagram_mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-      - ./mongodb.key:/tmp/mongodb.key
-    command: |
-      bash -c "
-        cp /tmp/mongodb.key /data/mongodb.key &&
-        chmod 600 /data/mongodb.key &&
-        chown mongodb:mongodb /data/mongodb.key &&
-        mongod --replSet rs0 --bind_ip_all --keyFile /data/mongodb.key
-      "
- 
-volumes:
-  mongo-data:
