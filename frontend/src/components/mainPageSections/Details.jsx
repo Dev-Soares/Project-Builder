@@ -2,7 +2,7 @@ import DetailCard from "../smallComponents/DetailCard"
 
 const Details = () => {
   return (
-    <section id="details" className='flex flex-col min-h-auto w-full p-8 py-26 bg-gradient-to-br from-purple-600 to bg-purple-950  text-white justify-center items-center gap-10 md:gap-14 lg:gap-16 xl:gap-20 '>
+    <section id="details" className='flex flex-col min-h-auto w-full p-8 py-26 bg-gradient-to-br from-blue-600 to bg-blue-950  text-white justify-center items-center gap-10 md:gap-14 lg:gap-16 xl:gap-20 '>
         <div className="w-full h-auto flex justify-center items-center flex-col gap-2 md:gap-4 xl:gap-5  mb-20">
             <h2 className=" text-4xl md:text-5xl xl:text-6xl font-bold text-center text-white">Por que usar nossa plataforma?</h2>
             <p className="text-center text-xl xl:text-2xl text-gray-200">Simplifique o processo de criação e gerenciamento da sua infraestrutura em nuvem.</p>

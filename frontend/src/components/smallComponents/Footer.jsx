@@ -5,20 +5,20 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className='w-full bg-linear-to-br from-purple-950 to-purple-800 text-white'>
+        <footer className='w-full bg-linear-to-br from-blue-950 to-blue-800 text-white'>
             <div className='flex flex-col lg:flex-row justify-between items-start gap-8 p-8 lg:p-16 max-w-7xl mx-auto'>
                 
                 <div className='flex flex-col gap-4 lg:max-w-[30%]'>
                     <h3 className='text-2xl font-bold'>DiagramBuilder</h3>
                     
                     <div className='flex gap-4 mt-2'>
-                        <a href="#" className='hover:text-purple-300 transition-colors'>
+                        <a href="#" className='hover:text-blue-300 transition-colors'>
                             <span className="material-symbols-outlined text-3xl">code</span>
                         </a>
-                        <a href="#" className='hover:text-purple-300 transition-colors'>
+                        <a href="#" className='hover:text-blue-300 transition-colors'>
                             <span className="material-symbols-outlined text-3xl">cloud</span>
                         </a>
-                        <a href="#" className='hover:text-purple-300 transition-colors'>
+                        <a href="#" className='hover:text-blue-300 transition-colors'>
                             <span className="material-symbols-outlined text-3xl">storage</span>
                         </a>
                     </div>
@@ -79,7 +79,7 @@ const Footer = () => {
             </div>
 
             {/* Bottom Bar */}
-            <div className='border-t border-purple-700 py-6'>
+            <div className='border-t border-blue-700 py-6'>
                 <div className='max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-300'>
                     <p>© {currentYear} DiagramBuilder.  Todos os direitos reservados.</p>
                     <div className='flex gap-6'>

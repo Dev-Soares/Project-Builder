@@ -164,7 +164,7 @@ const DiagramFlowSection = ({ id }) => {
 
             </ReactFlow>
             <div className="flex justify-center items-center ">
-                <button onClick={postFlowData} className='absolute bottom-6 right-6 z-50 bg-linear-to-br from-purple-600 to-purple-950 text-white  p-3 rounded-4xl flex justify-center items-center gap-2 px-4 cursor-pointer text-xl font-bold'>
+                <button onClick={postFlowData} className='absolute bottom-6 right-6 z-50 bg-linear-to-br from-blue-600 to-blue-950 text-white  p-3 rounded-4xl flex justify-center items-center gap-2 px-4 cursor-pointer text-xl font-bold'>
                     <span className="material-symbols-outlined"> code </span>Exportar Diagrama</button>
             </div>
         </section>
