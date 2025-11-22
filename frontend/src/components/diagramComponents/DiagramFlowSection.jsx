@@ -9,6 +9,7 @@ import awsIcons from '../../icons/awsIcons.js';
 import azureIcons from '../../icons/azureIcons.js';
 
 
+
 const DiagramFlowSection = ({ id }) => {
 
     const {
@@ -19,18 +20,15 @@ const DiagramFlowSection = ({ id }) => {
         onNodesChange,
         onEdgesChange,
         onConnect,
-        setIsEditingNode,
-        setIsOpen,
-        setSelectedNode,
         nodeTypes,
-        setDiagramName
+        setDiagramName,
     } = useDiagram(); //ACESSING CONTEXT VALUES
 
-    const { postFlowData, fetchDiagram } = useDiagramActions()
+    const { fetchDiagram } = useDiagramActions();
 
     const userId = id;
 
-    const findIconComponent = (label) => { 
+    const findIconComponent = (label) => {
 
         for (const group of awsIcons) {
             const found = group.icons.find(i => i.label === label);
@@ -47,10 +45,10 @@ const DiagramFlowSection = ({ id }) => {
     const loadInitialDiagram = async (id) => {
 
         try {
-            
+
             const { flowData } = await fetchDiagram(id);
-        
-            if (flowData && (flowData.nodes?.length > 0 || flowData.edges?.length > 0 || flowData.diagramName !== 'Untitled-Diagram')) { 
+
+            if (flowData && (flowData.nodes?.length > 0 || flowData.edges?.length > 0 || flowData.diagramName !== 'Untitled-Diagram')) {
                 const nodesWithIcons = (flowData.nodes || []).map(node => ({
                     ...node,
                     data: {
@@ -66,12 +64,9 @@ const DiagramFlowSection = ({ id }) => {
 
         } catch (error) {
             console.error('Error loading diagram:', error);
-            
-            
+
+
         }
-
-
-
     };
 
     useEffect(() => {
@@ -131,18 +126,6 @@ const DiagramFlowSection = ({ id }) => {
         [screenToFlowPosition, setNodes],
     );
 
-    const onNodeClick = useCallback((e, node) => {
-
-        setIsOpen(true);
-        setIsEditingNode(true);
-        setSelectedNode(node);
-
-    }, [setIsEditingNode, setSelectedNode]);
-
-    
-
-    
-
     return (
         <section className='h-[90vh] w-screen relative flex-1' ref={reactFlowWrapper}>
             <ReactFlow
@@ -154,19 +137,13 @@ const DiagramFlowSection = ({ id }) => {
                 onConnect={onConnect}
                 onDragOver={onDragOver}
                 onDrop={onDrop}
-                onNodeClick={onNodeClick}
-                defaultViewport={{x:0, y:0, zoom:0.5}}
+                defaultViewport={{ x: 0, y: 0, zoom: 0.5 }}
 
             >
-
                 <Background />
                 <Controls />
 
             </ReactFlow>
-            <div className="flex justify-center items-center ">
-                <button onClick={postFlowData} className='absolute bottom-6 right-6 z-50 bg-linear-to-br from-blue-600 to-blue-950 text-white  p-3 rounded-4xl flex justify-center items-center gap-2 px-4 cursor-pointer text-xl font-bold'>
-                    <span className="material-symbols-outlined"> code </span>Exportar Diagrama</button>
-            </div>
         </section>
     )
 }

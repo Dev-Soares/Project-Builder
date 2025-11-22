@@ -1,9 +1,6 @@
 import { Handle, Position, useReactFlow } from '@xyflow/react';
-import { useDiagram } from '../../contexts/DiagramContext';
 
 const CustomNode = ({id, data, isConnectable}) => {
-
-  const { setIsEditingNode, setSelectedNode } = useDiagram();
 
     const { deleteElements } = useReactFlow();
 
@@ -13,9 +10,6 @@ const CustomNode = ({id, data, isConnectable}) => {
         deleteElements({
             nodes: [{ id: id }]
         });
-
-        setIsEditingNode(false);
-        setSelectedNode(null);
         
     }
     const IconComponent = data?.iconComponent;

@@ -15,9 +15,16 @@ export const DiagramProvider = ({ children }) => {
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-    const [selectedNode, setSelectedNode] = useState(null);
-    const [isEditingNode, setIsEditingNode] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+    const getInitialIsOpen = () => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth >= 768; // true para desktop, false para mobile
+        }
+        return true; // fallback
+    };
+    
+    const [isOpen, setIsOpen] = useState(getInitialIsOpen());
+
+    
 
    
 
@@ -69,16 +76,12 @@ export const DiagramProvider = ({ children }) => {
         // ESTADOS (Valores que mudam a UI)
         nodes,
         edges,
-        selectedNode,
-        isEditingNode,
         isOpen,
         diagramName,
 
         // SETTERS (Funções para modificar o estado)
         setNodes,
         setEdges,
-        setSelectedNode,
-        setIsEditingNode,
         setIsOpen,
         setDiagramName,
         updateDiagramName,
@@ -93,8 +96,6 @@ export const DiagramProvider = ({ children }) => {
     }), [
         nodes,
         edges,
-        selectedNode,
-        isEditingNode,
         onNodesChange,
         onEdgesChange,
         nodeTypes,
@@ -105,8 +106,6 @@ export const DiagramProvider = ({ children }) => {
         updateDiagramName,
         isOpen,
         diagramName,
-        setSelectedNode,
-        setIsEditingNode,
         setIsOpen,
         setDiagramName
     ]);
