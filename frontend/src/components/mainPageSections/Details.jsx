@@ -9,7 +9,7 @@ const Details = () => {
         </div>
         <div className="w-full h-auto flex flex-wrap gap-6 xl:gap-10 justify-center items-center">
             <DetailCard cardIcon='code' cardTitle='Modelagem Visual' cardText='Crie sua infraestrutura arrastando e soltando componentes em um canvas intuitivo.'/>
-            <DetailCard cardIcon='bolt' cardTitle='Geração Instantânea' cardText='Converta seus diagramas em código Terraform válido com um clique.'/>
+            <DetailCard cardIcon='bolt' cardTitle='Geração Instantânea' cardText='Exporte seus diagramas com um clique.'/>
             <DetailCard cardIcon='cloud' cardTitle='Flexibilidade' cardText='Escolha seu provedor de acordo com as necessidades de sua infraestrutura'/>
             <DetailCard cardIcon='deployed_code' cardTitle='Modelagem Visual' cardText='Crie sua infraestrutura arrastando e soltando componentes em um canvas intuitivo.'/>
         </div>

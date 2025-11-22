@@ -41,9 +41,7 @@ const ArchitecturePage = () => {
     return (
         <>
 
-        <NotAvailablePage />
-
-        <main className='flex justify-center items-center min-h-screen w-full p-8 hidden lg:block'>
+        <main className='lg:flex justify-center items-center min-h-screen w-full p-8 hidden '>
             <div className='flex flex-col justify-center items-center lg:max-w-[70%] gap-16'>
                 <h1 className="lg:text-4xl font-bold text-center">Passo 1: Escolha a arquitetura para seu MVP</h1>
                 <div className="flex flex-row justify-between items-center gap-8">

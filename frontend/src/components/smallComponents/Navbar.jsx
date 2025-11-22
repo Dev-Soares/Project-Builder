@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useScrollTo } from '../../hooks/useScrollTo';
 
@@ -20,7 +20,7 @@ const Navbar = () => {
             className='flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity'
           >
             <span className="material-symbols-outlined text-white text-3xl">architecture</span>
-            <span className='text-xl font-bold text-white'>Terraform</span>
+            <span className='text-xl font-bold text-white'>DiagramBuilder</span>
           </div>
 
           {/* Desktop Menu */}
