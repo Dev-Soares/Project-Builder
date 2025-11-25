@@ -20,7 +20,7 @@ const DiagramContent = () => {
 
     
 
-    <main className='w-full h-screen overflow-hidden'>
+    <main className='w-full h-screen overflow-hidden select-none'>
 
       <DiagramHeader />
       <section className='h-[90%] w-full flex justify-between bg-gray-100 relative'>

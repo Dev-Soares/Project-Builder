@@ -16,12 +16,12 @@
   width: 18px !important;   /* padrão é 10px */
   height: 18px !important;
   border-radius: 50% !important;
-  background-color: #6e11b0 !important; /* Cor personalizada */
+  background-color: #171abd !important; /* Cor personalizada */
   border: 2px solid #fff !important; /* Borda branca para destaque */
 }
 
 .react-flow__edge-path {
-  stroke: #6e11b0;
+  stroke: #171abd !important; /* Cor personalizada para as conexões */
   stroke-width: 3px;
   stroke-linecap: butt;    /* remove ponta arredondada */
   stroke-linejoin: miter;  /* cantos mais "quadrados" */

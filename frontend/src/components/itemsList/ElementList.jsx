@@ -56,7 +56,8 @@ const ElementList = ({ onDragStart, selectedArchitecture }) => {
                     title={label}
                   >
                     <div className="h-10 w-10 flex items-center justify-center flex-shrink-0 mr-2">
-                      <IconComponent className="h-8 w-8 text-gray-500" />
+                      <IconComponent className="h-10 w-10" 
+                      style={{ color: color }}/>
                     </div>
                     <span className=' text-sm lg:text-md xl:text-[11px] 2xl:text-sm'>{label}</span>
                   </div>

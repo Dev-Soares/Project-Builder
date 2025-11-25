@@ -121,7 +121,7 @@ const DiagramFlowSection = ({ id }) => {
     );
 
     return (
-        <section className='h-[90vh] w-screen relative flex-1 bg-gray-900' ref={reactFlowRef}>
+        <section className='h-[90vh] w-screen relative flex-1 bg-gray-200 select-none' ref={reactFlowRef}>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}

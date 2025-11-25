@@ -14,12 +14,12 @@ const CustomNode = ({id, data, isConnectable}) => {
     }
     const IconComponent = data?.iconComponent;
     const label = data?.label ?? 'Unnamed';
-    const color = data?.color ?? '#FFFFFF';
+    const iconColor = data?.color || '#ffffff'; // Usar a cor definida nos dados
 
     
 
   return (
-    <div className='relative p-4 rounded-xl shadow-lg flex flex-col items-center gap-3 min-w-44 bg-gray-800 border-2 border-gray-600 hover:border-blue-400 transition-all duration-300 hover:shadow-xl'>
+    <div className='relative p-4 rounded-xl shadow-lg flex flex-col items-center gap-3 min-w-44 bg-gray-700 border-2 border-gray-600 hover:border-blue-400 transition-all duration-300 hover:shadow-xl'>
         <Handle 
           type="target" 
           position={Position.Top} 
@@ -28,7 +28,7 @@ const CustomNode = ({id, data, isConnectable}) => {
         />
         
         <button
-          className='absolute -top-2 -right-2 bg-red-500 text-white flex justify-center items-center rounded-full h-6 w-6 hover:bg-red-600 transition-colors duration-200 z-10 shadow-md'
+          className='absolute -top-2 -right-2 bg-red-500 text-white flex justify-center items-center rounded-full h-6 w-6 hover:bg-red-600 transition-colors cursor-pointer duration-200 z-10 shadow-md'
           onClick={(e) => handleDelete(e, id)}
           title="Deletar"
         >
@@ -38,8 +38,8 @@ const CustomNode = ({id, data, isConnectable}) => {
         <div className='h-12 w-12 flex items-center justify-center mt-2 bg-gray-700 rounded-lg'>
             {IconComponent && (
               <IconComponent 
-                className="h-8 w-8" 
-                style={{ color: '#ffffff' }}
+                className="h-16 w-16"
+                style={{ color: iconColor }}
               />
             )}
         </div>
@@ -51,7 +51,7 @@ const CustomNode = ({id, data, isConnectable}) => {
           className="w-3! h-3! bg-blue-500! border-2! border-white!"
         />
         
-        <div className="font-medium text-center text-sm text-white px-2 leading-tight">
+        <div className="font-semibold text-center text-sm text-white px-2 leading-tight">
           {label}
         </div>
     </div>
