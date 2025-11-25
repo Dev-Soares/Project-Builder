@@ -1,20 +1,18 @@
-
-
 generator client {
   provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
-  // Use the mongodb provider
-  provider = "mongodb"
-  // The connection string is loaded from your .env file
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+model Diagram {
+  id        String   @id @default(cuid())
+  flowData  Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-model diagram {
-
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  flowData    Json?
-  
+  @@map("diagrams")
 }

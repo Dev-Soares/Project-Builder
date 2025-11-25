@@ -55,18 +55,6 @@ const diagramController = {
       res.status(500).json({ error: "Failed to update diagram" });
     }
   },
-
-  postDiagramData: async (req, res) => {
-    const { id } = req.params;
-    const { flowData } = req.body;
-
-    try {
-      const updatedDiagram = await diagramService.updateDiagram(id, flowData);
-      return res.status(200).json(updatedDiagram);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to post diagram data" });
-    }
-  }
 };
 
 
@@ -81,7 +69,7 @@ export const handleTokenGeneration = async (req, res) => {
     return res.status(200).json({
       message: `Token de acesso gerado com sucesso.`,
       token: token,
-      expiresIn: "1min",
+      expiresIn: "3 horas",
     });
   } catch (error) {
     return res.status(500).json({ error: "Failed to generate access token" });

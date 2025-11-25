@@ -21,7 +21,7 @@ export const generateLimitedToken = (diagramId) => {
     
 
     const tokenConfig = {
-        expiresIn: '365d',
+        expiresIn: '3h',
         audience: 'diagram_users'
     };
 

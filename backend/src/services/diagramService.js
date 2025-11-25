@@ -1,5 +1,4 @@
 import prisma from '../config/prisma.js';
-import axios from 'axios';
 
 const diagramService = {
   
@@ -27,16 +26,6 @@ const diagramService = {
             throw new Error("Failed to update diagram");
         }
         
-    },
-
-    postDiagramData: async (id, flowData) => {
-        try {
-            return await axios.post(`http://external-service/api/diagrams/${id}`,  flowData);
-            //vai entrar o parser aqui 
-        } catch (error) {
-            console.error("Error posting diagram data:", error);
-            throw new Error("Failed to post diagram data");
-        }
     }
 
 
