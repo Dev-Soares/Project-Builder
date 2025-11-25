@@ -9,7 +9,7 @@ import Navbar from "../components/smallComponents/Navbar"
 const MainPage = () => {
 
   return (
-    <main className="flex flex-col"> 
+    <main className="flex flex-col bg-gray-900"> 
     <Navbar />
       <Hero />
       <Details />

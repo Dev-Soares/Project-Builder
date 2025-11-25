@@ -6,14 +6,14 @@ const Hero = () => {
 const navigate = useNavigate()
 
   return (
-    <section id="Hero" className='flex flex-col lg:flex-row justify-around items-center min-h-screen w-full p-8 mt-30 lg:mt-0 xl:pl-24 '>
+    <section id="Hero" className='flex flex-col lg:flex-row justify-around items-center min-h-screen w-full p-8 mt-30 lg:mt-0 xl:pl-24 bg-gray-900'>
        <div className='flex flex-col justify-center items-center text-center p-4 gap-6 lg:gap-8 md:max-w-[70%] lg:max-w-[60%] xl:max-w-[40%]'>
         <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl  font-bold">Visualize, Modele, Gere <span className="bg-linear-to-r from-black to-blue-900 bg-clip-text text-transparent font-black">seu Sistema</span></h1>
-          <h3 className="text-lg lg:text-xl xl:text-2xl font-normal text-gray-800">Construa sua Infraestrutura a partir de um diagrama visual. Sem cadastro, sem complicação.</h3>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white">Visualize, Modele, Gere <span className="bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent font-black">seu Sistema</span></h1>
+          <h3 className="text-lg lg:text-xl xl:text-2xl font-normal text-gray-300">Construa sua Infraestrutura a partir de um diagrama visual. Sem cadastro, sem complicação.</h3>
         </div>
           
-          <button onClick={() => navigate('/architecture')} className="w-[85%] lg:w-[70%] 2xl:w-[50%]  bg-gradient-to-br from-blue-600 to bg-blue-950 text-white font-bold p-3 px-4  rounded-4xl md:text-lg xl:text-xl flex justify-center items-center gap-4 cursor-pointer hover:translate-y-[-2px] hover:scale-105 transition-transform duration-500 border-none" > <span className="material-symbols-outlined"> code </span> Começar a Criar Diagrama</button>
+          <button onClick={() => navigate('/architecture')} className="w-[85%] lg:w-[70%] 2xl:w-[50%]  bg-gradient-to-br from-blue-600 to bg-blue-950 text-white font-bold p-3 px-4  rounded-4xl md:text-lg xl:text-xl flex justify-center items-center gap-4 cursor-pointer hover:translate-y-[-2px] hover:scale-105 transition-transform duration-500 border-none" > <span className="material-symbols-outlined"> code </span> Modele Seu Projeto</button>
        </div>
        <div className="w-full h-auto flex justify-center items-center mt-20">
         <DiagramExample />

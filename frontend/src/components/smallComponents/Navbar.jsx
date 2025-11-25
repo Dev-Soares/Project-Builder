@@ -20,7 +20,7 @@ const Navbar = () => {
             className='flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity'
           >
             <span className="material-symbols-outlined text-white text-3xl">architecture</span>
-            <span className='text-xl font-bold text-white'>DiagramBuilder</span>
+            <span className='text-xl font-bold text-white'>ProjectBuilder</span>
           </div>
 
           {/* Desktop Menu */}
