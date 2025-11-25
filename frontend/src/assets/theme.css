@@ -31,6 +31,36 @@ body {
     /* Prefixo para versões mais antigas do IE/Edge */
     -ms-user-select: none;
   }
+
+  /* Custom Scrollbar para Element Sidebar */
+  .sidebar-scroll {
+    /* WebKit browsers (Chrome, Safari, newer versions of Edge) */
+    scrollbar-width: thin;
+    scrollbar-color: #4b5563 #1f2937;
+  }
+
+  .sidebar-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .sidebar-scroll::-webkit-scrollbar-track {
+    background: #1f2937; /* bg-gray-800 */
+    border-radius: 3px;
+  }
+
+  .sidebar-scroll::-webkit-scrollbar-thumb {
+    background: #4b5563; /* bg-gray-600 */
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+
+  .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+    background: #6b7280; /* bg-gray-500 */
+  }
+
+  .sidebar-scroll::-webkit-scrollbar-corner {
+    background: #1f2937;
+  }
 }
 
 @keyframes fadeIn {

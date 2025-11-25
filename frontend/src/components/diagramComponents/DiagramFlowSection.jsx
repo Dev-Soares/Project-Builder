@@ -35,7 +35,7 @@ const DiagramFlowSection = ({ id }) => {
             const found = group.icons.find(i => i.label === label);
             if (found) return found.component || null;
         }
-        
+
         return null;
     };
 
@@ -121,7 +121,7 @@ const DiagramFlowSection = ({ id }) => {
     );
 
     return (
-        <section className='h-[90vh] w-screen relative flex-1 bg-gray-200 select-none' ref={reactFlowRef}>
+        <section className='h-[90vh] w-screen relative flex-1 bg-gray-700 select-none' ref={reactFlowRef}>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -134,7 +134,12 @@ const DiagramFlowSection = ({ id }) => {
                 defaultViewport={{ x: 0, y: 0, zoom: 0.5 }}
 
             >
-                <Background color="#374151" />
+                <Background
+                    color="#ffffff"
+                    variant="dots"
+                    gap={20}
+                    size={1}
+                />
                 <Controls />
 
             </ReactFlow>

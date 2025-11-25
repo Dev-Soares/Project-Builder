@@ -11,26 +11,21 @@ const DiagramHeader = () => {
         navigate('/');
     }
 
-
     return (
-        <header className='h-[10%] w-full bg-gray-300 flex items-center justify-between p-6 px-12 nav-diagram-border select-none'>
+        <header className='h-[10%] w-full bg-gray-800 flex items-center justify-between p-6 px-12 nav-diagram-border select-none border-b border-gray-700'>
             <button onClick={ () => setIsOpen(!isOpen)} >
-                <span className='material-symbols-outlined cursor-pointer text-4xl!'>{isOpen ? 'close' : 'menu'}</span>
+                <span className='material-symbols-outlined cursor-pointer text-4xl text-white hover:text-gray-300 transition-colors'>{isOpen ? 'close' : 'menu'}</span>
             </button>
             <div className="flex flex-row gap-2 items-center">
-                <input className='text-lg xl:text-2xl font-bold w-45 xl:w-55 p-2 focus:outline-none focus:bg-white rounded-lg' 
-                value={diagramName}
-                onChange={(e) => setDiagramName(e.target.value)} />
-               <button
-               className='material-symbols-outlined cursor-pointer'>edit</button>
+                <h2 className='text-lg xl:text-2xl font-bold p-2 focus:outline-none text-white transition-colors' 
+                >{diagramName}</h2>
             </div>
             <div className="block md:hidden">
-                {/* /div placeholder to keep the space between the left and right buttons */}
+                {/* div placeholder to keep the space between the left and right buttons */}
             </div>
-            <button className="hidden md:flex flex-row items-center text-red-700 cursor-pointer font-bold text-sm xl:text-lg" onClick={handleGoBack}>
-                <span className='material-symbols-outlined '>arrow_back_ios</span> <p>Voltar</p>
+            <button className="hidden md:flex flex-row items-center text-red-400 cursor-pointer font-bold text-sm xl:text-lg hover:text-red-300 transition-colors" onClick={handleGoBack}>
+                <span className='material-symbols-outlined'>arrow_back_ios</span> <p>Voltar</p>
             </button>
-            
         </header>
     )
 }

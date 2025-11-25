@@ -18,11 +18,11 @@ const ElementList = ({ onDragStart, selectedArchitecture }) => {
       {iconsSource.map((group) => (
         <div key={group.category} className="mb-4">
           <div 
-            className="flex items-center justify-between cursor-pointer p-2 rounded hover:bg-gray-100 transition-colors duration-300"
+            className="flex items-center justify-between cursor-pointer p-2 rounded hover:bg-gray-600 transition-colors duration-300"
             onClick={() => toggleCategory(group.category)}
           >
-            <h3 className='text-sm lg:text-lg font-semibold'>{group.category}</h3>
-            <span className={`material-symbols-outlined transition-transform duration-300 ${expandedCategories[group.category] ? 'rotate-180' : ''}`}>
+            <h3 className='text-sm lg:text-lg font-semibold text-white'>{group.category}</h3>
+            <span className={`material-symbols-outlined text-white transition-transform duration-300 ${expandedCategories[group.category] ? 'rotate-180' : ''}`}>
               expand_more
             </span>
           </div>
@@ -50,16 +50,18 @@ const ElementList = ({ onDragStart, selectedArchitecture }) => {
                 return (
                   <div
                     key={id}
-                    className='flex items-center cursor-grab select-none p-2 rounded transition-all duration-800 hover:translate-y-[-1px] w-fit hover:bg-gray-100'
+                    className='flex items-center cursor-grab select-none p-2 rounded transition-all duration-800 hover:translate-y-[-1px] w-fit hover:bg-gray-600'
                     draggable
                     onDragStart={(e) => onDragStart(e, data)}
                     title={label}
                   >
                     <div className="h-10 w-10 flex items-center justify-center flex-shrink-0 mr-2">
-                      <IconComponent className="h-10 w-10" 
-                      style={{ color: color }}/>
+                      <IconComponent 
+                        className="h-10 w-10" 
+                        style={{ color: color }}
+                      />
                     </div>
-                    <span className=' text-sm lg:text-md xl:text-[11px] 2xl:text-sm'>{label}</span>
+                    <span className='text-sm lg:text-md xl:text-[11px] 2xl:text-sm select-none text-white'>{label}</span>
                   </div>
                 );
               })}
