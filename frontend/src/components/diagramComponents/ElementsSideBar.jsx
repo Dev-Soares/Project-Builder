@@ -34,7 +34,7 @@ const ElementsSideBar = () => {
     };
 
     return (
-        <aside className={`font-bold text-lg bg-gray-700 sidebar-scroll h-full shrink-0 flex flex-col items-center overflow-x-hidden overflow-y-visible transition-all duration-500 select-none ease-out ${isOpen ? "w-[50%] md:w-[35%] lg:w-[30%] xl:w-[20%] p-4" : "w-0"} pt-12`}>
+        <aside className={`font-bold text-lg bg-gray-900 sidebar-scroll h-full shrink-0 flex flex-col items-center overflow-x-hidden overflow-y-visible transition-all duration-500 select-none ease-out ${isOpen ? "w-[50%] md:w-[35%] lg:w-[30%] xl:w-[20%] p-4" : "w-0"} pt-12`}>
             {showContent && isOpen && (
                 <>
                     <div className="flex flex-col justify-start items-start mb-6 ml-5 gap-2 opacity-0 animate-fadeIn w-full relative">

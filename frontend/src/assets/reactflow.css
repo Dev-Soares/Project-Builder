@@ -42,9 +42,6 @@ body {
   vector-effect: non-scaling-stroke; /* mantém espessura independente do zoom (opcional) */
 }
 
- .react-flow__background svg circle {
-  fill: white !important;
-} 
 
 @layer utilities {
   .input-border {

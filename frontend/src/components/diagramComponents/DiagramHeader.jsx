@@ -12,7 +12,7 @@ const DiagramHeader = () => {
     }
 
     return (
-        <header className='h-[10%] w-full bg-gray-700 flex items-center justify-between p-6 px-12 nav-diagram-border select-none'>
+        <header className='h-[10%] w-full bg-gray-900 flex items-center justify-between p-6 px-12 nav-diagram-border select-none'>
             <button onClick={ () => setIsOpen(!isOpen)} >
                 <span className='material-symbols-outlined cursor-pointer text-4xl! text-white hover:text-gray-300 transition-colors'>{isOpen ? 'close' : 'menu'}</span>
             </button>
