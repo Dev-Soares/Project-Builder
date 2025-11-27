@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon --watch src --exec \"node\" src/server.js",
-    "build": "echo \"No build step for plain JS\""
+    "build": "npx prisma generate"
   },
   "keywords": [],
   "author": "",
