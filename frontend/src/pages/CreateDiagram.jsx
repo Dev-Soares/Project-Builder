@@ -6,6 +6,7 @@ import { useState } from "react"
 
 const CreateDiagram = () => {
 
+    
     const navigate = useNavigate()
     const { createNewDiagram } = useDiagramActions()
     const { errorAlert, setIsLoading } = useAlert()
