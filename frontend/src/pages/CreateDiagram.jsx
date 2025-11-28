@@ -9,7 +9,7 @@ const CreateDiagram = () => {
     
     const navigate = useNavigate()
     const { createNewDiagram } = useDiagramActions()
-    const { errorAlert, setIsLoading } = useAlert()
+    const {setIsLoading } = useAlert()
 
     const [diagramName, setDiagramName] = useState('')
 
@@ -26,7 +26,7 @@ const CreateDiagram = () => {
                 throw new Error('diagram generation failed');
             }
         } catch (error) {
-            errorAlert('Erro ao gerar o link de acesso. Tente novamente.');
+            console.error('Error creating diagram:', error);
         } finally {
             setIsLoading(false);
         }

@@ -8,7 +8,7 @@ import swaggerSpec from './docs/swaggerConfig.js';
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['http://localhost:5173',' https://project-builder-frontend.vercel.app/'];
 
 const corsOptions = {
   origin: (origin, callback) => {
