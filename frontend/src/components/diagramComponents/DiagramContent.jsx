@@ -20,7 +20,7 @@ const DiagramContent = () => {
     <main className='w-full h-screen overflow-hidden select-none'>
 
       <DiagramHeader />
-      <section className='h-[90%] w-full flex justify-between bg-gray-100 relative'>
+      <section className='h-[90%] w-full flex justify-between bg-gray-100 relative overflow-hidden'>
 
         <ElementsSideBar /> {/* Sidebar que armazena elementos que podem ser arrastados para o diagrama */}
 

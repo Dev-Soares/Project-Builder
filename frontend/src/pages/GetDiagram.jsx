@@ -30,7 +30,7 @@ const GetDiagram = () => {
             }
             
         } catch (error) {
-            errorAlert('Erro ao carregar o diagrama. Tente novamente.');
+            console.error('Error fetching diagram:', error);
         } finally {
             setIsLoading(false);
         }
@@ -44,15 +44,9 @@ const GetDiagram = () => {
             <main className='flex flex-col justify-center items-center min-h-screen w-full p-4 sm:p-6 md:p-8 bg-gray-900'>
                 <Navbar />
                 <form onSubmit={(e) => handleGetDiagram(e)} className='flex flex-col justify-center items-center max-w-full gap-8 sm:gap-12 bg-white p-8 rounded-xl shadow-lg mt-16 select-none w-[85%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] pt-15'>
-                    <div className="text-center space-y-3 border-b border-purple-600 pb-6 w-full">
-                        <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-800 to-purple-500 bg-clip-text text-transparent leading-normal">
-                            Project Builder
-                        </h3>
-                        <p className="text-gray-600 text-base md:text-lg font-medium">
-                            Acesse seu Projeto Existente
-                        </p>
-
-                    </div>
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-700 text-center w-full mb-2 tracking-tight drop-shadow-sm border-b border-purple-300 pb-8 ">
+                        Acessar Projeto
+                    </h1>
                     <div className="w-full h-auto flex flex-col gap-4">
                         <label htmlFor="projectName"
                             className="text-lg text-black self-start font-semibold"

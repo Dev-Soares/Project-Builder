@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useAlert } from "../contexts/AlertContext.jsx"
 import { useDiagramActions } from "../hooks/useDiagramActions.js"
 import Navbar from "../components/smallComponents/Navbar.jsx"
+import Footer from "../components/smallComponents/Footer.jsx"
 import { useState } from "react"
 
 const CreateDiagram = () => {
@@ -38,15 +39,9 @@ const CreateDiagram = () => {
             <main className='flex flex-col justify-center items-center min-h-screen w-full p-4 sm:p-6 md:p-8 bg-gray-900'>
                 <Navbar />
                 <form onSubmit={handleCreateDiagram} className='flex flex-col justify-center items-center max-w-full gap-8 sm:gap-12 bg-white p-8 rounded-xl shadow-lg mt-16 select-none w-[85%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] pt-15'>
-                    <div className="text-center space-y-3 border-b border-purple-600 pb-6 w-full">
-                        <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-800 to-purple-500 bg-clip-text text-transparent leading-normal">
-                            Project Builder
-                        </h3>
-                        <p className="text-gray-600 text-base md:text-lg font-medium">
-                            Crie seu Novo Projeto
-                        </p>
-
-                    </div>
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-700 text-center w-full mb-2 tracking-tight drop-shadow-sm border-b border-purple-300 pb-8 ">
+                        Criar Projeto
+                    </h1>
                     <div className="w-full h-auto flex flex-col gap-4">
                         <label htmlFor="diagramName"
                             className="text-lg text-black self-start font-semibold"
@@ -61,7 +56,7 @@ const CreateDiagram = () => {
                             maxLength={30}
                             required
                         />
-                        <p className="text-yellow-600 text-sm lg:text-lg flex items-center justify-center gap-2">
+                        <p className=" text-yellow-600 text-sm lg:text-lg flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined text-yellow-500 lg:text-4xl!">info</span>
                             Ele será salvo no ID de Sessão
                         </p>
@@ -78,6 +73,7 @@ const CreateDiagram = () => {
                     
                 </form>
             </main>
+            <Footer />
         </>
     )
 }

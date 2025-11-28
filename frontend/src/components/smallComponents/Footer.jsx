@@ -12,15 +12,15 @@ const Footer = () => {
                     <h3 className='text-2xl font-bold'>ProjectBuilder</h3>
                     
                     <div className='flex gap-4 mt-2'>
-                        <a href="#" className='hover:text-purple-300 transition-colors'>
+                        <p href="" className='hover:text-purple-300 transition-colors'>
                             <span className="material-symbols-outlined text-3xl">code</span>
-                        </a>
-                        <a href="#" className='hover:text-purple-300 transition-colors'>
+                        </p>
+                        <p href="" className='hover:text-purple-300 transition-colors'>
                             <span className="material-symbols-outlined text-3xl">cloud</span>
-                        </a>
-                        <a href="#" className='hover:text-purple-300 transition-colors'>
+                        </p>
+                        <p href="" className='hover:text-purple-300 transition-colors'>
                             <span className="material-symbols-outlined text-3xl">storage</span>
-                        </a>
+                        </p>
                     </div>
                 </div>
 
