@@ -85,16 +85,16 @@ const ElementsSideBar = () => {
                             type="text"
                             value={diagramName}
                             onChange={(e) => setDiagramName(e.target.value)}
-                            className="w-[85%] px-3 py-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:border-purple-500 focus:bg-gray-600 transition-colors text-sm lg:text-lg font-normal placeholder-gray-400"
+                            className="w-[85%] px-3 py-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:border-purple-500 focus:bg-gray-600 transition-colors text-md lg:text-lg font-normal placeholder-gray-400"
                             placeholder="Digite o nome do diagrama..."
                         />
                     </div>
                     <div className="flex flex-col justify-start items-start mb-8 ml-5 gap-2 opacity-0 animate-fadeIn w-full relative z-40">
-                            <button onClick={() => saveFlowData(id, toObject, diagramName)} className='flex justify-center items-center w-[70%] h-auto rounded-xl bg-green-600
+                            <button onClick={() => saveFlowData(id, toObject, diagramName)} className='flex justify-center items-center w-[90%] md:w-[70%] h-auto rounded-xl bg-green-600
                             border-2 border-green-600 text-white font-bold py-2 px-3 cursor-pointer text-sm xl:text-lg gap-2
                             hover:text-green-600 hover:bg-gray-800 hover:border-green-500 transition-all hover:translate-y-[-3px] duration-600 whitespace-nowrap'>
                             <span className="material-symbols-outlined"> upload </span>Salvar</button>
-                            <button onClick={() => copyIdToClipboard(id)} className={`flex justify-center items-center w-[70%] h-auto rounded-xl bg-blue-600
+                            <button onClick={() => copyIdToClipboard(id)} className={`flex justify-center items-center w-[90%] md:w-[70%] h-auto rounded-xl bg-blue-600
                             border-2 border-blue-600 text-white font-bold py-2 px-3 cursor-pointer text-sm xl:text-lg gap-2
                             hover:text-blue-600 hover:bg-gray-800 hover:border-blue-500 transition-all hover:translate-y-[-3px] duration-600 whitespace-nowrap
                             ${textIsCopied ? 'text-white!' : ''}
