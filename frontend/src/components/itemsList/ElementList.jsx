@@ -3,7 +3,10 @@ import languageIcons from "../../icons/languageIcons";
 import { useDiagram } from '../../contexts/DiagramContext.jsx';
 
 const ElementList = ({ onDragStart }) => {
-  const [expandedCategories, setExpandedCategories] = useState({});
+  const [expandedCategories, setExpandedCategories] =  useState(() =>
+  Object.fromEntries(languageIcons.map(group => [group.category, true]))
+);
+
   const { setSelectedElement, selectedElement } = useDiagram();
 
   const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -26,7 +29,7 @@ const ElementList = ({ onDragStart }) => {
   return (
     <>
       {iconsSource.map((group) => (
-        <div key={group.category} className="mb-4">
+        <div key={group.category} id={group.category} className="mb-4">
           <div 
             className="flex items-center justify-between cursor-pointer p-2 rounded hover:bg-gray-500 transition-colors duration-300"
             onClick={() => toggleCategory(group.category)}

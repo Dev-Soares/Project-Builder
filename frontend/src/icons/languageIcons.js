@@ -78,9 +78,8 @@ import { FaJava, FaServer, FaDatabase } from "react-icons/fa";
 import { MdWeb } from "react-icons/md";
 
 const languageIcons = [
-  // Always keep Main Stacks first
   {
-    category: "Main Stacks",
+    category: "Stacks",
     icons: [
       { component: MdWeb, id: "frontend", label: "Frontend", type: "CustomNode", color: "#61DAFB" },
       { component: FaServer, id: "backend", label: "Backend", type: "CustomNode", color: "#339933" },

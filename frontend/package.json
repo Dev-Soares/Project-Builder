@@ -16,6 +16,7 @@
     "axios": "^1.12.2",
     "azure-react-icons": "^0.10.1",
     "html-to-image": "^1.11.13",
+    "intro.js": "^8.3.2",
     "jspdf": "^3.0.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
