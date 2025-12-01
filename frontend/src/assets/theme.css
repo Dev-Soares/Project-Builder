@@ -13,7 +13,13 @@ body {
   font-family: "Inter", "sans-serif";
 }
 
+.draggable-item {
+  touch-action: pan-y; /* Diz pro navegador: "não faça scroll aqui, deixa eu controlar" */
+  -webkit-user-drag: element;
+}
+
 @layer utilities {
+
   .input-border {
     border: 0.1px solid #bbb;
   }

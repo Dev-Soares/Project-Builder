@@ -1,7 +1,7 @@
 import { useState } from "react";
 import languageIcons from "../../icons/languageIcons";
 
-const ElementList = ({ onDragStart, onTouchElement }) => {
+const ElementList = ({ onDragStart }) => {
   const [expandedCategories, setExpandedCategories] = useState({});
 
   const toggleCategory = (category) => {
@@ -50,12 +50,9 @@ const ElementList = ({ onDragStart, onTouchElement }) => {
                 return (
                   <div
                     key={id}
-                    className='flex items-center cursor-grab select-none p-2 rounded transition-all duration-800 hover:translate-y-[-1px] w-fit hover:bg-gray-600'
-                    draggable
+                    className='flex no-select items-center cursor-grab select-none p-2 rounded transition-all duration-800 hover:translate-y-[-1px] w-fit hover:bg-gray-600'
+                    draggable={true}
                     onDragStart={(e) => onDragStart && onDragStart(e, data)}
-                    onTouchEnd={(e) => {
-                      if (onTouchElement) onTouchElement(e, data);
-                    }}
                     title={label}
                   >
                     <div className="h-10 w-10 flex items-center justify-center flex-shrink-0 mr-2">

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ElementList from '../../components/itemsList/ElementList.jsx';   
 import { useAlert } from '../../contexts/AlertContext.jsx';
@@ -14,17 +14,12 @@ const ElementsSideBar = () => {
 
     const { id } = useParams();
 
-    const { toObject, addNodes, screenToFlowPosition } = useReactFlow();
+    const { toObject } = useReactFlow();
 
     const { saveFlowData } = useDiagramActions();
 
     const [textIsCopied, setTextIsCopied] = useState(false);
-    // Estado para drag touch
-    const [touchDragElement, setTouchDragElement] = useState(null);
-    // Ref para evitar múltiplos listeners
-    const touchDragElementRef = useRef(null);
-    
-
+   
     const onDragStart = (event, el) => {
         event.dataTransfer.setData('application/reactflow', JSON.stringify(el));
         event.dataTransfer.effectAllowed = 'move';
@@ -37,43 +32,6 @@ const ElementsSideBar = () => {
             setTimeout(() => setTextIsCopied(false), 8000);
         });
     };
-
-    const onTouchStartElement = (event, el) => {
-        setTouchDragElement(el);
-        touchDragElementRef.current = el;
-    };
-
-    const clearTouchDrag = () => {
-        setTouchDragElement(null);
-        touchDragElementRef.current = null;
-    };
-
-    useEffect(() => {
-        const handleTouchEnd = (event) => {
-            const el = touchDragElementRef.current;
-            if (!el) return;
-            const touch = event.changedTouches?.[0];
-            if (!touch) return;
-            
-            const position = screenToFlowPosition({
-                x: touch.clientX,
-                y: touch.clientY,
-            });
-            addNodes({
-                id: `${el.id}-${Date.now()}`,
-                type: el.type,
-                position,
-                data: { label: el.label, color: el.color },
-            });
-            clearTouchDrag();
-        };
-        if (touchDragElement) {
-            window.addEventListener('touchend', handleTouchEnd, { passive: false });
-        }
-        return () => {
-            window.removeEventListener('touchend', handleTouchEnd, { passive: false });
-        };
-    }, [touchDragElement, screenToFlowPosition, addNodes]);
 
     return (
         <aside className={`font-bold text-lg bg-gray-900 sidebar-scroll h-full shrink-0 flex flex-col items-center overflow-x-hidden overflow-y-visible transition-all duration-500 select-none ease-out ${isOpen ? "w-[50%] md:w-[35%] lg:w-[30%] xl:w-[20%] p-4" : "w-0"} pt-12`}>
@@ -115,8 +73,6 @@ const ElementsSideBar = () => {
                         <div className='flex flex-col flex-wrap gap-4 my-12 m-3 ml-2'>
                             <ElementList 
                                 onDragStart={onDragStart} 
-                                onTouchElement={undefined} // não usa mais
-                                onTouchStartElement={onTouchStartElement}
                             />
                         </div>
                     </div>
