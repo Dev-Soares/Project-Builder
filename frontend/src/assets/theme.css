@@ -14,7 +14,8 @@ body {
 }
 
 .draggable-item {
-  touch-action: none;
+  /* touch-action: pan-y permite scroll vertical no mobile, mas bloqueia horizontal (drag) */
+  touch-action: pan-y;
   -webkit-user-drag: element;
 }
 

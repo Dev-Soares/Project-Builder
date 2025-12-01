@@ -1,8 +1,12 @@
 import { useState } from "react";
 import languageIcons from "../../icons/languageIcons";
+import { useDiagram } from '../../contexts/DiagramContext.jsx';
 
 const ElementList = ({ onDragStart }) => {
   const [expandedCategories, setExpandedCategories] = useState({});
+  const { setSelectedElement, selectedElement } = useDiagram();
+
+  const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   const toggleCategory = (category) => {
     setExpandedCategories(prev => ({
@@ -12,6 +16,12 @@ const ElementList = ({ onDragStart }) => {
   };
 
   const iconsSource = languageIcons;
+
+  const handleElementClick = (data) => {
+    if (isMobile) {
+      setSelectedElement(data);
+    }
+  };
 
   return (
     <>
@@ -26,7 +36,6 @@ const ElementList = ({ onDragStart }) => {
               expand_more
             </span>
           </div>
-          
           <div className={`overflow-y-auto transition-all duration-300 ${expandedCategories[group.category] ? 'max-h-96 mt-4' : 'max-h-0'}`}>
             <div className='flex flex-wrap gap-4'>
               {group.icons.map(({ component: IconComponent, id, label, color }, idx) => {
@@ -50,9 +59,10 @@ const ElementList = ({ onDragStart }) => {
                 return (
                   <div
                     key={id}
-                    className='flex  draggable-item items-center cursor-grab select-none p-2 rounded transition-all duration-800 hover:translate-y-[-1px] w-fit hover:bg-gray-600'
-                    draggable={true}
-                    onDragStart={(e) => onDragStart && onDragStart(e, data)}
+                    className={`flex draggable-item items-center cursor-grab select-none p-2 rounded transition-all duration-800 hover:translate-y-[-1px] w-fit hover:bg-gray-600 ${isMobile && selectedElement?.id === id ? 'ring-2 ring-blue-400 m-2' : ''}`}
+                    draggable={!isMobile}
+                    onDragStart={(e) => !isMobile && onDragStart && onDragStart(e, data)}
+                    onClick={() => handleElementClick(data)}
                     title={label}
                   >
                     <div className="h-10 w-10 flex items-center justify-center flex-shrink-0 mr-2">

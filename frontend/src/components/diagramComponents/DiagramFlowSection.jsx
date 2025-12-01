@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import { ReactFlow, Background, Controls, useReactFlow } from '@xyflow/react';
+import { ReactFlow, Background, useReactFlow } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import '../../assets/reactflow.css';
 import idGenerator from '../../utils/idGenerator.js';
@@ -72,6 +72,9 @@ const DiagramFlowSection = ({ id }) => {
     // tipos de nodes customizados, podem ser adcionados mais outros
 
     const { screenToFlowPosition } = useReactFlow();
+    const { selectedElement, setSelectedElement } = useDiagram();
+
+    const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     const onDragOver = useCallback((event) => {
         event.preventDefault();
@@ -120,8 +123,39 @@ const DiagramFlowSection = ({ id }) => {
         [screenToFlowPosition, setNodes],
     );
 
+    // Fallback: adicionar node ao tocar no canvas no mobile
+    const handleCanvasClick = useCallback((event) => {
+        if (!isMobile || !selectedElement) return;
+        // Evita adicionar node se clicar em node existente
+        if (event.target.closest('.react-flow__node')) return;
+
+        const position = {
+            x: event.clientX,
+            y: event.clientY,
+        };
+        const flowPosition = screenToFlowPosition(position);
+        const iconComponent = findIconComponent(selectedElement.label);
+        const newNode = {
+            id: idGenerator(),
+            type: selectedElement.type,
+            position: flowPosition,
+            data: {
+                label: `${selectedElement.label}`,
+                iconComponent: iconComponent,
+                iconId: selectedElement.id,
+                color: selectedElement.color
+            },
+        };
+        setNodes((nds) => nds.concat(newNode));
+        setSelectedElement(null);
+    }, [isMobile, selectedElement, setNodes, setSelectedElement, screenToFlowPosition]);
+
     return (
-        <section className='h-[90vh] w-screen relative flex-1 bg-gray-200 select-none' ref={reactFlowRef}>
+        <section
+            className='h-[90vh] w-screen relative flex-1 bg-gray-200 select-none'
+            ref={reactFlowRef}
+            onClick={isMobile ? handleCanvasClick : undefined}
+        >
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -136,7 +170,6 @@ const DiagramFlowSection = ({ id }) => {
                 extent={[[-500, -500], [1500, 1300]]}
             >
                 <Background
-                    
                     variant="dots"
                     gap={20}
                     size={1}

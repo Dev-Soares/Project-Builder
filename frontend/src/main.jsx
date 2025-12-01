@@ -9,13 +9,6 @@ import { DiagramProvider } from './contexts/DiagramContext.jsx'
 import { AlertProvider } from './contexts/AlertContext.jsx'
 import axios from 'axios'
 import GetDiagram from './pages/GetDiagram.jsx';
-import { polyfill } from "mobile-drag-drop";
-import "mobile-drag-drop/default.css";
-
-polyfill({
-  dragImageCenterOnTouch: true,   
-  forceApply: false, 
-});
 
 
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL

@@ -65,6 +65,9 @@ export const DiagramProvider = ({ children }) => {
         setDiagramName(newName);
     }, []);
 
+    // Estado para fallback mobile: elemento selecionado
+    const [selectedElement, setSelectedElement] = useState(null);
+
     const contextValue = useMemo(() => ({
         // ESTADOS (Valores que mudam a UI)
         nodes,
@@ -78,6 +81,8 @@ export const DiagramProvider = ({ children }) => {
         setEdges,
         setIsOpen,
         setDiagramName,
+        selectedElement,
+        setSelectedElement,
         updateDiagramName,
         updateNodeData,
 
