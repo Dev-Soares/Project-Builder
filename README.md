@@ -5,15 +5,15 @@
   <br>
 </h1>
 
-<h4 align="center">Visualize, Modele e Gere a Arquitetura do seu Sistema.</h4>
+<h4 align="center">Visualize, Model, and Generate your System Architecture.</h4>
 
 <p align="center">
-  <a href="#-sobre">Sobre</a> •
+  <a href="#-about">About</a> •
   <a href="#-features">Features</a> •
   <a href="#-tech-stack">Tech Stack</a> •
-  <a href="#-como-executar">Como Executar</a> •
-  <a href="#-api-docs">Documentação API</a> •
-  <a href="#-autor">Autor</a>
+  <a href="#-getting-started">Getting Started</a> •
+  <a href="#-api-docs">API Docs</a> •
+  <a href="#-author">Author</a>
 </p>
 
 <p align="center">
@@ -27,88 +27,88 @@
 
 <br>
 
-## 🔖 Sobre
+## 🔖 About
 
-O **ProjectBuilder** é uma ferramenta visual interativa projetada para desenvolvedores e arquitetos de software. Ela permite criar diagramas de infraestrutura e arquitetura de sistemas utilizando uma interface "Drag & Drop" intuitiva.
+**ProjectBuilder** is an interactive visual tool designed for software developers and architects. It allows you to create infrastructure and system architecture diagrams using an intuitive "Drag & Drop" interface.
 
-Diferente de ferramentas de desenho genéricas, o ProjectBuilder é focado em tech, oferecendo uma biblioteca vasta de ícones reais (AWS, Azure, Linguagens, Frameworks) e permitindo salvar e compartilhar projetos através de links únicos, sem a barreira de login obrigatório.
+Unlike generic drawing tools, ProjectBuilder is tech-focused, offering a vast library of real icons (AWS, Azure, Languages, Frameworks) and enabling users to save and share projects via unique links without the barrier of mandatory login.
 
 ---
 
 ## ✨ Features
 
-* **🎨 Modelagem Visual (Drag & Drop):** Construa diagramas complexos arrastando nós em um canvas infinito (powered by `@xyflow/react`).
-* **💾 Persistência de Dados:** Salve seus diagramas e recupere-os posteriormente via ID único.
-* **🔗 Compartilhamento:** Gere links de acesso para compartilhar a arquitetura com seu time.
-* **📚 Biblioteca Rica:** Centenas de ícones categorizados (Cloud, DevTools, Bancos de Dados, Linguagens).
-* **🎓 Tutorial Interativo:** Sistema de onboarding integrado (`intro.js`) para novos usuários.
-* **📱 Responsivo:** Interface adaptável para Desktop e Mobile.
+* **🎨 Visual Modeling (Drag & Drop):** Build complex diagrams by dragging nodes onto an infinite canvas (powered by `@xyflow/react`).
+* **💾 Data Persistence:** Save your diagrams and retrieve them later via a unique ID.
+* **🔗 Sharing:** Generate access links to share the architecture with your team.
+* **📚 Rich Library:** Hundreds of categorized icons (Cloud, DevTools, Databases, Languages).
+* **🎓 Interactive Tutorial:** Integrated onboarding system (`intro.js`) for new users.
+* **📱 Responsive:** Adaptive interface for both Desktop and Mobile.
 
 ---
 
 ## 🚀 Tech Stack
 
-O projeto utiliza o que há de mais moderno no ecossistema JavaScript/TypeScript.
+The project uses the latest technologies in the JavaScript/TypeScript ecosystem.
 
 ### Frontend
-| Tecnologia | Descrição |
+| Technology | Description |
 | :--- | :--- |
-| **React 19** | Biblioteca core para UI. |
-| **Vite** | Build tool de altíssima performance. |
-| **Tailwind CSS v4** | Estilização utility-first de última geração. |
-| **React Flow (@xyflow)** | Engine para construção de diagramas baseados em nós. |
-| **Axios** | Cliente HTTP para comunicação com a API. |
-| **React Hot Toast** | Notificações toast elegantes. |
+| **React 19** | Core library for UI. |
+| **Vite** | High-performance build tool. |
+| **Tailwind CSS v4** | Next-gen utility-first styling. |
+| **React Flow (@xyflow)** | Engine for node-based diagram building. |
+| **Axios** | HTTP client for API communication. |
+| **React Hot Toast** | Elegant toast notifications. |
 
 ### Backend
-| Tecnologia | Descrição |
+| Technology | Description |
 | :--- | :--- |
-| **Node.js v20** | Runtime JavaScript no servidor. |
-| **Express** | Framework web rápido e minimalista. |
-| **Prisma ORM** | ORM moderno para interação com o banco de dados. |
-| **PostgreSQL** | Banco de dados relacional robusto. |
-| **Swagger** | Documentação automática da API. |
-| **JWT** | Gestão de tokens de acesso para compartilhamento seguro. |
+| **Node.js v20** | JavaScript runtime on the server. |
+| **Express** | Fast and minimalist web framework. |
+| **Prisma ORM** | Modern ORM for database interaction. |
+| **PostgreSQL** | Robust relational database. |
+| **Swagger** | Automatic API documentation. |
+| **JWT** | Access token management for secure sharing. |
 
-### Infraestrutura & DevOps
-* **Docker & Docker Compose:** Orquestração completa do ambiente (Frontend, Backend e Banco de Dados).
+### Infrastructure & DevOps
+* **Docker & Docker Compose:** Complete environment orchestration (Frontend, Backend, and Database).
 
 ---
 
-## 🐳 Como Executar (Docker)
+## 🐳 Getting Started (Docker)
 
-A maneira mais fácil de rodar o projeto é utilizando Docker, pois ele configura automaticamente o banco de dados, o backend e o frontend.
+The easiest way to run the project is using Docker, as it automatically configures the database, backend, and frontend.
 
-### Pré-requisitos
-* Docker e Docker Compose instalados.
+### Prerequisites
+* Docker and Docker Compose installed.
 
-### Passo a Passo
+### Step-by-Step
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
     ```bash
     git clone [https://github.com/bernardosoares30/project-builder.git](https://github.com/bernardosoares30/project-builder.git)
     cd project-builder
     ```
 
-2.  **Configure as Variáveis de Ambiente:**
-    Crie o arquivo `.env` na pasta `backend` baseando-se no `.env.example`:
+2.  **Configure Environment Variables:**
+    Create a `.env` file in the `backend` folder based on `.env.example`:
     ```bash
-    # Exemplo para backend/.env
+    # Example for backend/.env
     DB_USER=postgres
     DB_PASSWORD=postgres
     DB_NAME=projectbuilder
-    JWT_SECRET=sua_chave_secreta_aqui
-    # A URL é montada automaticamente pelo Docker Compose, mas para referência:
+    JWT_SECRET=your_secret_key_here
+    # The URL is automatically assembled by Docker Compose, but for reference:
     # DATABASE_URL="postgresql://postgres:postgres@db:5432/projectbuilder?schema=public"
     ```
 
-3.  **Suba os Containers:**
-    Na raiz do projeto (onde está o `docker-compose.yml` principal ou nas pastas respectivas se separado), execute:
+3.  **Start the Containers:**
+    In the project root (where the main `docker-compose.yml` is located), run:
     ```bash
     docker-compose up --build
     ```
 
-4.  **Acesse a Aplicação:**
+4.  **Access the Application:**
     * **Frontend:** `http://localhost:5173`
     * **Backend API:** `http://localhost:3000`
     * **Swagger Docs:** `http://localhost:3000/api-docs`
@@ -117,36 +117,36 @@ A maneira mais fácil de rodar o projeto é utilizando Docker, pois ele configur
 
 ## 🔌 API Endpoints
 
-A documentação completa pode ser visualizada via Swagger em `/api-docs`. Abaixo, as principais rotas:
+Full documentation is available via Swagger at `/api-docs`. Below are the main routes:
 
-| Método | Endpoint | Descrição |
+| Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `POST` | `/api/diagram/create-diagram` | Cria um novo diagrama e retorna o ID. |
-| `GET` | `/api/diagram/:id` | Retorna os dados (nós e arestas) de um diagrama. |
-| `PUT` | `/api/diagram/save-diagram/:id` | Atualiza a estrutura de um diagrama existente. |
-| `DELETE`| `/api/diagram/delete-diagram/:id` | Remove um diagrama. |
-| `POST` | `/api/diagram/generate-token/:id` | Gera token de acesso temporário. |
+| `POST` | `/api/diagram/create-diagram` | Creates a new diagram and returns the ID. |
+| `GET` | `/api/diagram/:id` | Returns data (nodes and edges) of a diagram. |
+| `PUT` | `/api/diagram/save-diagram/:id` | Updates an existing diagram structure. |
+| `DELETE`| `/api/diagram/delete-diagram/:id` | Removes a diagram. |
+| `POST` | `/api/diagram/generate-token/:id` | Generates a temporary access token. |
 
 ---
 
-## 📂 Estrutura do Projeto
+## 📂 Project Structure
 
 ```text
 ProjectBuilder/
 ├── backend/
 │   ├── src/
-│   │   ├── controllers/   # Lógica das rotas
-│   │   ├── services/      # Regras de negócio e chamadas ao DB
-│   │   ├── routes/        # Definição de endpoints
-│   │   └── prisma/        # Schemas e Migrations do DB
+│   │   ├── controllers/   # Route logic
+│   │   ├── services/      # Business rules and DB calls
+│   │   ├── routes/        # Endpoint definitions
+│   │   └── prisma/        # DB Schemas and Migrations
 │   └── Dockerfile
 ├── frontend/
 │   ├── src/
-│   │   ├── components/    # Componentes React modulares
-│   │   │   ├── diagramComponents/ # Lógica do React Flow
+│   │   ├── components/    # Modular React components
+│   │   │   ├── diagramComponents/ # React Flow logic
 │   │   │   └── ...
 │   │   ├── contexts/      # Context API (Diagram, Alert)
-│   │   ├── hooks/         # Hooks customizados
-│   │   └── pages/         # Roteamento
+│   │   ├── hooks/         # Custom hooks
+│   │   └── pages/         # Routing
 │   └── Dockerfile
-└── docker-compose.yml     # Orquestração dos serviços
+└── docker-compose.yml     # Service orchestration
