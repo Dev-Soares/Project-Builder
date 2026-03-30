@@ -1,95 +1,74 @@
-import { useState } from "react";
-import languageIcons from "../../icons/languageIcons";
-import { useDiagram } from '../../contexts/DiagramContext.jsx';
+import { useState } from "react"
+import languageIcons from "../../icons/languageIcons"
+import { useDiagram } from '../../contexts/DiagramContext.jsx'
+import { CaretDown } from '@phosphor-icons/react'
 
 const ElementList = () => {
-
   const onDragStart = (event, el) => {
-        event.dataTransfer.setData('application/reactflow', JSON.stringify(el));
-        event.dataTransfer.effectAllowed = 'move';
-    };
+    event.dataTransfer.setData('application/reactflow', JSON.stringify(el))
+    event.dataTransfer.effectAllowed = 'move'
+  }
 
-  const [expandedCategories, setExpandedCategories] =  useState(() =>
-  Object.fromEntries(languageIcons.map(group => [group.category, true]))
-);
+  const [expandedCategories, setExpandedCategories] = useState(() =>
+    Object.fromEntries(languageIcons.map(group => [group.category, true]))
+  )
 
-  const { setSelectedElement, selectedElement } = useDiagram();
-
-  const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const { setSelectedElement, selectedElement } = useDiagram()
+  const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
 
   const toggleCategory = (category) => {
-    setExpandedCategories(prev => ({
-      ...prev,
-      [category]: !prev[category]
-    }));
-  };
-
-  const iconsSource = languageIcons;
+    setExpandedCategories(prev => ({ ...prev, [category]: !prev[category] }))
+  }
 
   const handleElementClick = (data) => {
-    if (isMobile) {
-      setSelectedElement(data);
-    }
-  };
+    if (isMobile) setSelectedElement(data)
+  }
 
   return (
     <>
-      {iconsSource.map((group) => (
-        <div key={group.category} id={group.category} className="mb-4">
-          <div 
-            className="flex items-center justify-between cursor-pointer p-2 rounded hover:bg-gray-500 transition-colors duration-300"
+      {languageIcons.map((group) => (
+        <div key={group.category} id={group.category} className="mb-3">
+          <button
+            className="flex items-center justify-between w-full cursor-pointer py-2.5 px-2 rounded-lg hover:bg-white/[0.04] transition-colors"
             onClick={() => toggleCategory(group.category)}
           >
-            <h3 className='text-sm lg:text-lg font-semibold text-white'>{group.category}</h3>
-            <span className={`material-symbols-outlined text-white transition-transform duration-300 ${expandedCategories[group.category] ? 'rotate-180' : ''}`}>
-              expand_more
-            </span>
-          </div>
-          <div className={`overflow-y-auto transition-all duration-300 ${expandedCategories[group.category] ? 'max-h-96 mt-4' : 'max-h-0'}`}>
-            <div className='flex flex-wrap gap-4'>
+            <span className="text-sm font-semibold text-white">{group.category}</span>
+            <CaretDown
+              size={16}
+              weight="bold"
+              className={`text-gray-500 transition-transform duration-200 ${expandedCategories[group.category] ? 'rotate-180' : ''}`}
+            />
+          </button>
+          <div className={`overflow-hidden transition-all duration-200 ${expandedCategories[group.category] ? 'max-h-[500px] mt-3' : 'max-h-0'}`}>
+            <div className="flex flex-wrap gap-2">
               {group.icons.map(({ component: IconComponent, id, label, color }, idx) => {
-                const data = {
-                  id,
-                  label,
-                  type: "CustomNode",
-                  color: color,
-                };
-
-                if (!IconComponent) {
-                  console.warn(`Missing icon component for id=${id} label=${label} category=${group.category}`);
-                  return (
-                    <div key={id ?? idx} className='flex items-center p-2 rounded bg-red-50 text-sm'>
-                      <div className='h-6 w-6 bg-gray-200 mr-2' />
-                      <span>{label}</span>
-                    </div>
-                  );
-                }
+                const data = { id, label, type: "CustomNode", color }
+                if (!IconComponent) return null
 
                 return (
                   <div
                     key={id}
-                    className={`flex draggable-item items-center cursor-grab select-none p-2 rounded transition-all duration-800 hover:translate-y-[-1px] w-fit hover:bg-gray-600 ${isMobile && selectedElement?.id === id ? 'ring-2 ring-blue-400 m-2 bg-gray-600' : ''}`}
+                    className={`flex items-center gap-2.5 cursor-grab select-none px-3 py-2 rounded-lg transition-all duration-150 hover:bg-white/[0.06] ${
+                      isMobile && selectedElement?.id === id ? 'ring-1 ring-violet-500/50 bg-white/[0.06]' : ''
+                    }`}
                     draggable={!isMobile}
-                    onDragStart={(e) => !isMobile && onDragStart && onDragStart(e, data)}
+                    onDragStart={(e) => !isMobile && onDragStart(e, data)}
                     onClick={() => handleElementClick(data)}
                     title={label}
                   >
-                    <div className="h-10 w-10 flex items-center justify-center flex-shrink-0 mr-2">
-                      <IconComponent 
-                        className="h-10 w-10" 
-                        style={{ color: color }}
-                      />
+                    <div className="h-9 w-9 flex items-center justify-center shrink-0">
+                      <IconComponent className="h-9 w-9" style={{ color }} />
                     </div>
-                    <span className='text-sm lg:text-md xl:text-[11px] 2xl:text-sm select-none text-white'>{label}</span>
+                    <span className="text-sm text-gray-300 select-none">{label}</span>
                   </div>
-                );
+                )
               })}
             </div>
           </div>
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default ElementList;
+export default ElementList

@@ -1,21 +1,30 @@
 import { Handle, Position } from '@xyflow/react';
+import { Cloud, Database, Plugs, Monitor, Users } from '@phosphor-icons/react';
 
-const ExampleNode = ({ id, data, isConnectable }) => {
-    const icon = data?.icon
-    const label = data?.label ?? 'Unnamed';
-    const color = data?.color ?? '#FFFFFF';
+const iconMap = {
+  cloud: Cloud,
+  database: Database,
+  api: Plugs,
+  monitor: Monitor,
+  group: Users,
+};
 
-    return (
-        <div className='p-4 rounded-xl shadow-md flex flex-col items-center gap-2 min-w-40 border-2 border-gray-200'
-            style={{ backgroundColor: color }}>
-            <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
-            <div className='h-16 w-16 flex items-center justify-center material-symbols-outlined text-6xl! text-white'>
-                {icon}
-            </div>
-            <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
-            <div className={`font-semibold text-center text-md ${color !== '#FFFFFF' ? 'text-white' : 'text-black'}`}>{label}</div>
-        </div>
-    );
+const ExampleNode = ({ data, isConnectable }) => {
+  const label = data?.label ?? 'Unnamed';
+  const color = data?.color ?? '#8b5cf6';
+  const IconComponent = iconMap[data?.icon] || Cloud;
+
+  return (
+    <div
+      className="px-5 py-4 rounded-2xl flex flex-col items-center gap-2 min-w-36 border border-white/20 shadow-lg backdrop-blur-sm"
+      style={{ backgroundColor: color }}
+    >
+      <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
+      <IconComponent size={40} weight="duotone" className="text-white" />
+      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
+      <span className="font-medium text-sm text-white/90">{label}</span>
+    </div>
+  );
 };
 
 export default ExampleNode;

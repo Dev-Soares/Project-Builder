@@ -1,49 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap");
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
 }
 
 *, html {
   scroll-behavior: smooth !important;
 }
 
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100%;
+}
+
 body {
-  font-family: "Inter", "sans-serif";
+  position: relative;
+  min-height: 100vh;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+  color: #111827;
 }
 
+.dark body {
+  background-color: #030712;
+  color: #f9fafb;
+}
+
+/* Headlines font */
+.font-display {
+  font-family: "Roboto", "Inter", sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 100%);
+  border-radius: 10px;
+  border: 2px solid #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  border-color: #030712;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a78bfa 0%, #7c3aed 100%);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #8b5cf6 #f1f5f9;
+}
+
+.dark * {
+  scrollbar-color: #8b5cf6 #030712;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(139, 92, 246, 0.3);
+  color: #fff;
+}
+
+/* Orb floating animation */
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(20px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-15px, 15px) scale(0.95);
+  }
+}
+
+/* Intro.js custom theme */
 .introjs-tooltip {
-  background: #221f23 !important;
-  color: #ffffff !important;
-  border-radius: 12px !important;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700 !important;
-  font-size: larger !important;
+  background: #0a0a1a !important;
+  color: #e5e7eb !important;
+  border: 1px solid rgba(139, 92, 246, 0.15) !important;
+  border-radius: 16px !important;
+  font-family: "Inter", sans-serif;
+  font-weight: 400 !important;
+  font-size: 0.935rem !important;
+  line-height: 1.6 !important;
+  padding: 1.25rem 1.5rem !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(139, 92, 246, 0.08) !important;
 }
 
-.introjs-button.introjs-nextbutton, .introjs-button.introjs-prevbutton {
-  color: #551aa3 !important;
-  background: #ffffff !important;
-  font-weight: 700 !important;
-  border: none !important;
-  cursor: pointer !important;
+.introjs-tooltiptext {
+  padding: 0.5rem 0 !important;
+}
+
+.introjs-bullets {
+  padding: 10px 0 0 !important;
+}
+
+.introjs-bullets ul li a {
+  background: rgba(255, 255, 255, 0.12) !important;
+  width: 6px !important;
+  height: 6px !important;
+}
+
+.introjs-bullets ul li a.active {
+  background: #8b5cf6 !important;
+  width: 18px !important;
+  border-radius: 3px !important;
+}
+
+.introjs-tooltipbuttons {
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 10px 0 0 !important;
+}
+
+.introjs-button {
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  padding: 0.4rem 1rem !important;
   text-shadow: none !important;
-  outline: none !important;
+  border: none !important;
   box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
 }
 
-.introjs-button.introjs-nextbutton:hover, .introjs-button.introjs-prevbutton:hover {
-  background: #7d37d8 !important;
+.introjs-button.introjs-prevbutton {
+  color: #9ca3af !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.introjs-button.introjs-prevbutton:hover {
+  color: #e5e7eb !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.introjs-button.introjs-nextbutton {
   color: #ffffff !important;
-  transition: all 0.5s ease-in-out !important;
-  transform: translateY(-2px) !important;
+  background: #8b5cf6 !important;
+}
+
+.introjs-button.introjs-nextbutton:hover {
+  background: #7c3aed !important;
+}
+
+.introjs-button.introjs-donebutton {
+  color: #ffffff !important;
+  background: #8b5cf6 !important;
+}
+
+.introjs-button.introjs-donebutton:hover {
+  background: #7c3aed !important;
 }
 
 .introjs-skipbutton {
-  color: #551aa3 !important;
+  color: rgba(255, 255, 255, 0.3) !important;
   background: transparent !important;
-  font-size: 2rem !important;
+  font-size: 1.25rem !important;
   border: none !important;
   box-shadow: none !important;
   outline: none !important;
@@ -51,25 +191,40 @@ body {
   opacity: 1 !important;
   z-index: 9999 !important;
   cursor: pointer !important;
-  transition: color 0.2s;
+  transition: color 0.15s !important;
 }
 
 .introjs-skipbutton:hover {
-  color: #ffffff !important;
+  color: rgba(255, 255, 255, 0.7) !important;
   background: transparent !important;
 }
 
-.introjs-closeButton:hover {
-  color: #7d37d8 !important;
-  background: transparent !important;
+.introjs-arrow.top {
+  border-bottom-color: #0a0a1a !important;
+}
+
+.introjs-arrow.bottom {
+  border-top-color: #0a0a1a !important;
+}
+
+.introjs-arrow.left {
+  border-right-color: #0a0a1a !important;
+}
+
+.introjs-arrow.right {
+  border-left-color: #0a0a1a !important;
+}
+
+.introjs-helperLayer {
+  border-radius: 12px !important;
+  box-shadow: 0 0 0 9999px rgba(3, 7, 18, 0.75), 0 0 20px rgba(139, 92, 246, 0.1) !important;
 }
 
 .introjs-overlay {
-  background: rgba(34, 34, 34, 0.7) !important;
+  background: rgba(3, 7, 18, 0.6) !important;
 }
 
 @layer utilities {
-
   .input-border {
     border: 0.1px solid #bbb;
   }
@@ -79,22 +234,13 @@ body {
   }
 
   .no-select {
-    /* Propriedade padrão (moderna) */
     user-select: none;
-
-    /* Prefixo para navegadores WebKit (como Chrome e Safari) */
     -webkit-user-select: none;
-
-    /* Prefixo para Firefox */
     -moz-user-select: none;
-
-    /* Prefixo para versões mais antigas do IE/Edge */
     -ms-user-select: none;
   }
 
-  /* Custom Scrollbar para Element Sidebar */
   .sidebar-scroll {
-    /* WebKit browsers (Chrome, Safari, newer versions of Edge) */
     scrollbar-width: thin;
     scrollbar-color: #4b5563 #1f2937;
   }
@@ -104,18 +250,18 @@ body {
   }
 
   .sidebar-scroll::-webkit-scrollbar-track {
-    background: #1f2937; /* bg-gray-800 */
+    background: #1f2937;
     border-radius: 3px;
   }
 
   .sidebar-scroll::-webkit-scrollbar-thumb {
-    background: #4b5563; /* bg-gray-600 */
+    background: #4b5563;
     border-radius: 3px;
     transition: background-color 0.3s ease;
   }
 
   .sidebar-scroll::-webkit-scrollbar-thumb:hover {
-    background: #6b7280; /* bg-gray-500 */
+    background: #6b7280;
   }
 
   .sidebar-scroll::-webkit-scrollbar-corner {
@@ -168,18 +314,16 @@ body {
 
 @media (max-width: 600px) {
   .introjs-tooltip {
-    font-size: 0.95rem !important;
-    padding: 0.9rem 1rem !important;
-    max-width: 96vw !important;
+    font-size: 0.875rem !important;
+    padding: 1rem 1.15rem !important;
+    max-width: 92vw !important;
     min-width: 60vw !important;
     width: auto !important;
     box-sizing: border-box !important;
-  }
-  .introjs-tooltip-title {
-    font-size: 1.08rem !important;
+    border-radius: 14px !important;
   }
   .introjs-button {
-    font-size: 0.97rem !important;
-    padding: 0.45rem 1.1rem !important;
+    font-size: 0.82rem !important;
+    padding: 0.4rem 0.9rem !important;
   }
 }
