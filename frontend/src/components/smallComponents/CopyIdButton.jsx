@@ -1,8 +1,6 @@
-import React from 'react'
+import { CheckCircle, Copy } from '@phosphor-icons/react'
 
-
-
-const CopyIdButton = () => {
+const CopyIdButton = ({ textIsCopied, copyIdToClipboard, id }) => {
     return (
         <button onClick={() => copyIdToClipboard(id)} className={`flex justify-center items-center w-[90%] md:w-[70%] h-auto rounded-xl bg-blue-600
                             border-2 border-blue-600 text-white font-bold py-2 px-3 cursor-pointer text-sm xl:text-lg gap-2
@@ -10,13 +8,14 @@ const CopyIdButton = () => {
                             ${textIsCopied ? 'text-white!' : ''}
                             `}>
             {textIsCopied ? (<>
-                <span className="material-symbols-outlined"> check_circle </span>
+                <CheckCircle size={22} weight="fill" />
                 <span>ID copiado!</span>
             </>) : (
                 <>
-                    <span className="material-symbols-outlined"> content_copy </span>
+                    <Copy size={22} weight="bold" />
                     <span>Copiar ID</span>
-                </>)}</button>
+                </>)}
+        </button>
     )
 }
 

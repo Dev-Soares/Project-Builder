@@ -1,81 +1,145 @@
-import { useNavigate } from "react-router-dom"
-import { useAlert } from "../contexts/AlertContext.jsx"
-import { useDiagramActions } from "../hooks/useDiagramActions.js"
-import Navbar from "../components/smallComponents/Navbar.jsx"
-import Footer from "../components/smallComponents/Footer.jsx"
-import { useState } from "react"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAlert } from '../contexts/AlertContext.jsx'
+import { useDiagramActions } from '../hooks/useDiagramActions.js'
+import { useTheme } from '../hooks/useTheme'
+import Navbar from '../components/smallComponents/Navbar.jsx'
+import { ArrowRight } from '@phosphor-icons/react'
 
 const CreateDiagram = () => {
+  const navigate = useNavigate()
+  const { createNewDiagram } = useDiagramActions()
+  const { setIsLoading } = useAlert()
+  const { dark } = useTheme()
 
-    
-    const navigate = useNavigate()
-    const { createNewDiagram } = useDiagramActions()
-    const {setIsLoading } = useAlert()
+  const [diagramName, setDiagramName] = useState('')
+  const [focused, setFocused] = useState(false)
 
-    const [diagramName, setDiagramName] = useState('')
+  const handleCreateDiagram = async (e) => {
+    e.preventDefault()
+    setIsLoading(true)
 
-    const handleCreateDiagram = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        
-
-        try {
-            const diagram = await createNewDiagram(diagramName);
-            if (diagram?.data?.id) {
-                navigate(`/diagram/${diagram.data.id}`);
-            } else {
-                throw new Error('diagram generation failed');
-            }
-        } catch (error) {
-            console.error('Error creating diagram:', error);
-        } finally {
-            setIsLoading(false);
-        }
-
+    try {
+      const diagram = await createNewDiagram(diagramName)
+      if (diagram?.data?.id) {
+        navigate(`/diagram/${diagram.data.id}`)
+      } else {
+        throw new Error('diagram generation failed')
+      }
+    } catch (error) {
+      console.error('Error creating diagram:', error)
+    } finally {
+      setIsLoading(false)
     }
+  }
 
-    return (
-        <>
-            <main className='flex flex-col justify-center items-center min-h-screen w-full p-4 sm:p-6 md:p-8 bg-gray-900'>
-                <Navbar />
-                <form onSubmit={handleCreateDiagram} className='flex flex-col justify-center items-center max-w-full gap-8 sm:gap-12 bg-white p-8 rounded-xl shadow-lg mt-16 select-none w-[85%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] pt-15'>
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-700 text-center w-full mb-2 tracking-tight drop-shadow-sm border-b border-purple-300 pb-8 ">
-                        Criar Projeto
-                    </h1>
-                    <div className="w-full h-auto flex flex-col gap-4">
-                        <label htmlFor="diagramName"
-                            className="text-lg text-black self-start font-semibold"
-                        >Nome do Diagrama</label>
-                        <input
-                            id="diagramName"
-                            type="text"
-                            value={diagramName}
-                            onChange={(e) => setDiagramName(e.target.value)}
-                            placeholder="Ex: Arquitetura do Sistema, Fluxo de Login..."
-                            className="w-full px-4 py-3 bg-gray-300 rounded-lg focus:border-purple-500 focus:bg-gray-400 transition-colors "
-                            maxLength={30}
-                            required
-                        />
-                        <p className=" text-yellow-600 text-sm lg:text-lg flex items-center justify-center gap-2">
-                            <span className="material-symbols-outlined text-yellow-500 lg:text-4xl!">info</span>
-                            Ele será salvo no ID de Sessão
-                        </p>
-                    </div>
-                    <div className="w-auto justify-center items-center flex flex-col gap-4">
-                        <button type="submit" className="bg-gradient-to-br from-purple-600 to bg-purple-950 text-white font-bold p-3 px-6 rounded-xl md:text-lg lg:text-xl flex justify-center items-center gap-4 cursor-pointer hover:translate-y-[-2px] hover:scale-105 transition-transform duration-500 border-none" >
-                        <span className="material-symbols-outlined"> add_circle </span> Criar Projeto
-                    </button>
-                        <button>
-                        Já possui um projeto? <span onClick={() => navigate('/get-diagram')} className="text-purple-600 font-bold cursor-pointer hover:underline">Acesse aqui</span>
-                    </button>
-                    </div>
-                    
-                    
-                </form>
-            </main>
-            <Footer />
-        </>
-    )
+  return (
+    <main
+      className="relative flex flex-col items-center justify-center min-h-screen w-full px-6 overflow-hidden transition-colors duration-300"
+      style={{ background: dark ? '#030712' : '#ffffff' }}
+    >
+      <Navbar />
+
+      {/* Large ambient glow */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          width: '600px',
+          height: '300px',
+          top: '45%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(ellipse, rgba(139,92,246,0.12) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+          opacity: dark ? 1 : 0.6,
+        }}
+      />
+
+      <div className="relative w-full max-w-xl text-center">
+        {/* Heading */}
+        <h1 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight mb-14 ${
+          dark ? 'text-white' : 'text-gray-900'
+        }`}>
+          Crie seu{' '}
+          <span className="bg-linear-to-r from-violet-500 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            projeto
+          </span>
+        </h1>
+
+        {/* Command-line style input */}
+        <form onSubmit={handleCreateDiagram}>
+          <div
+            className="relative flex items-center gap-3 rounded-2xl px-5 py-4 transition-all duration-200"
+            style={{
+              background: dark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+              border: `1px solid ${focused ? 'rgba(139,92,246,0.4)' : dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`,
+              boxShadow: focused
+                ? '0 0 0 4px rgba(139,92,246,0.08), 0 8px 32px rgba(139,92,246,0.10)'
+                : dark ? '0 4px 24px rgba(0,0,0,0.3)' : '0 4px 24px rgba(0,0,0,0.04)',
+            }}
+          >
+            {/* Prompt prefix */}
+            <span className={`text-sm font-mono font-bold select-none shrink-0 ${
+              focused ? 'text-violet-400' : dark ? 'text-gray-600' : 'text-gray-300'
+            }`}>
+              &gt;_
+            </span>
+
+            <input
+              type="text"
+              value={diagramName}
+              onChange={(e) => setDiagramName(e.target.value)}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              placeholder="nome do seu projeto"
+              maxLength={30}
+              required
+              autoComplete="off"
+              className={`flex-1 bg-transparent text-base font-mono tracking-wide outline-none ${
+                dark
+                  ? 'text-white placeholder-gray-600'
+                  : 'text-gray-900 placeholder-gray-300'
+              }`}
+            />
+
+            <button
+              type="submit"
+              className="shrink-0 p-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white transition-all duration-200 hover:scale-105 cursor-pointer shadow-lg shadow-violet-600/25"
+            >
+              <ArrowRight size={18} weight="bold" />
+            </button>
+          </div>
+
+          {/* Keyboard hint */}
+          <div className={`mt-5 flex items-center justify-center gap-2 text-xs ${
+            dark ? 'text-gray-600' : 'text-gray-300'
+          }`}>
+            <kbd
+              className="px-1.5 py-0.5 rounded font-mono text-[11px]"
+              style={{
+                background: dark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
+                border: `1px solid ${dark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)'}`,
+              }}
+            >
+              Enter
+            </kbd>
+            <span>para criar</span>
+          </div>
+        </form>
+
+        {/* Alt action */}
+        <div className={`mt-14 text-sm ${dark ? 'text-gray-600' : 'text-gray-400'}`}>
+          Já tem um projeto?{' '}
+          <button
+            onClick={() => navigate('/get-diagram')}
+            className="text-violet-500 hover:text-violet-400 font-medium transition-colors cursor-pointer"
+          >
+            Acessar agora
+          </button>
+        </div>
+      </div>
+    </main>
+  )
 }
 
 export default CreateDiagram

@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -9,39 +8,85 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: "Inter", "sans-serif";
+/* React Flow Controls */
+.react-flow__controls {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .react-flow__controls-button {
-  border: 0.1px solid #bbb; /* Adiciona uma borda leve */
-  width: 40px;      /* Aumenta a largura do botão (padrão é 32px) */
-  height: 40px;     /* Aumenta a altura do botão (padrão é 32px) */
-  border-radius: 6px; /* Aumenta um pouco a borda, para ficar mais suave */
-  margin: 4px;      /* Aumenta a margem entre os botões */
+  background: #0a0a1a;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  width: 36px;
+  height: 36px;
+  color: #9ca3af;
+  transition: color 0.15s, background 0.15s;
 }
 
-/* Aumenta o tamanho dos ícones SVG dentro dos botões */
+.react-flow__controls-button:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none;
+}
+
 .react-flow__controls-button svg {
-  width: 20px;      
+  width: 16px;
+  fill: currentColor;
 }
 
+/* Handles */
 .react-flow__handle {
-  width: 18px !important;   /* padrão é 10px */
-  height: 18px !important;
+  width: 12px !important;
+  height: 12px !important;
   border-radius: 50% !important;
-  background-color: #4b1dca !important; /* Cor personalizada */
-  border: 2px solid #fff !important; /* Borda branca para destaque */
+  background-color: #8b5cf6 !important;
+  border: 2px solid #f8f8fa !important;
+  transition: transform 0.15s;
 }
 
+.react-flow__handle:hover {
+  transform: scale(1.3);
+}
+
+/* Edges */
 .react-flow__edge-path {
-  stroke: #4b1dca !important; /* Cor personalizada para as conexões */
-  stroke-width: 3px;
-  stroke-linecap: butt;    /* remove ponta arredondada */
-  stroke-linejoin: miter;  /* cantos mais "quadrados" */
-  vector-effect: non-scaling-stroke; /* mantém espessura independente do zoom (opcional) */
+  stroke: #8b5cf6 !important;
+  stroke-width: 2px;
+  stroke-linecap: round;
 }
 
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #a78bfa !important;
+  stroke-width: 3px;
+}
+
+/* Selection box */
+.react-flow__selection {
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Minimap */
+.react-flow__minimap {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+/* Attribution */
+.react-flow__attribution {
+  opacity: 0.3;
+}
+
+.react-flow__attribution a {
+  color: #6b7280;
+}
 
 @layer utilities {
   .input-border {
@@ -49,57 +94,38 @@ body {
   }
 
   .no-select {
-    /* Propriedade padrão (moderna) */
     user-select: none;
-
-    /* Prefixo para navegadores WebKit (como Chrome e Safari) */
     -webkit-user-select: none;
-
-    /* Prefixo para Firefox */
     -moz-user-select: none;
-
-    /* Prefixo para versões mais antigas do IE/Edge */
     -ms-user-select: none;
   }
 
-  /* Custom Scrollbar para Element Sidebar */
   .sidebar-scroll {
-    /* WebKit browsers (Chrome, Safari, newer versions of Edge) */
-    scrollbar-width: auto;
-    scrollbar-color: #4b5563 #1f2937;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
   }
 
   .sidebar-scroll::-webkit-scrollbar {
-    width: 10px; /* Aumentado de 6px para 10px */
+    width: 4px;
   }
 
   .sidebar-scroll::-webkit-scrollbar-track {
-    background: #1f2937; /* bg-gray-800 */
-    border-radius: 5px; /* Aumentado de 3px para 5px proporcionalmente */
+    background: transparent;
   }
 
   .sidebar-scroll::-webkit-scrollbar-thumb {
-    background: #4b5563; /* bg-gray-600 */
-    border-radius: 5px; /* Aumentado de 3px para 5px proporcionalmente */
-    transition: background-color 0.3s ease;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
   }
 
   .sidebar-scroll::-webkit-scrollbar-thumb:hover {
-    background: #6b7280; /* bg-gray-500 */
-  }
-
-  .sidebar-scroll::-webkit-scrollbar-corner {
-    background: #1f2937;
+    background: rgba(255, 255, 255, 0.15);
   }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .animate-fadeIn {
@@ -107,25 +133,13 @@ body {
 }
 
 @keyframes custom-enter {
-  0% {
-    transform: translate3d(0, calc(100% + 1rem), 0) scale(0.6);
-    opacity: 0;
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 1;
-  }
+  0% { transform: translate3d(0, calc(100% + 1rem), 0) scale(0.6); opacity: 0; }
+  100% { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
 }
 
 @keyframes custom-leave {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.85);
-    opacity: 0;
-  }
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.85); opacity: 0; }
 }
 
 .animate-custom-enter {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { CaretDown } from '@phosphor-icons/react'
 
 const CategoryDrop = ({ group, onDragStart }) => {
 
@@ -7,7 +8,7 @@ const CategoryDrop = ({ group, onDragStart }) => {
   return (
     <div key={group.category} className="mb-4">
           <button onClick={() => setIsCategoryOpen(!isCategoryOpen)}>
-            <h3 className='text-md font-semibold mb-6 flex justify-center items-center gap-1 select-none'>{group.category} <span className="material-symbols-outlined">arrow_drop_down</span></h3>
+            <h3 className='text-md font-semibold mb-6 flex justify-center items-center gap-1 select-none'>{group.category} <CaretDown size={18} weight="bold" /></h3>
           </button>
           
           <div className='grid grid-cols-2 gap-4'>

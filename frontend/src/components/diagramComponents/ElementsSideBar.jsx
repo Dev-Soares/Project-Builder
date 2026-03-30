@@ -1,85 +1,96 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ElementList from '../../components/itemsList/ElementList.jsx';
-import { useAlert } from '../../contexts/AlertContext.jsx';
-import { useDiagram } from '../../contexts/DiagramContext.jsx';
-import { useDiagramActions } from '../../hooks/useDiagramActions.js';
-import { useReactFlow } from '@xyflow/react';
-import TutorialButton from '../smallComponents/TutorialButton.jsx';
-import ShareButton from '../smallComponents/ShareButton.jsx';
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import ElementList from '../../components/itemsList/ElementList.jsx'
+import { useAlert } from '../../contexts/AlertContext.jsx'
+import { useDiagram } from '../../contexts/DiagramContext.jsx'
+import { useDiagramActions } from '../../hooks/useDiagramActions.js'
+import { useReactFlow } from '@xyflow/react'
+import TutorialButton from '../smallComponents/TutorialButton.jsx'
+import ShareButton from '../smallComponents/ShareButton.jsx'
+import { FloppyDisk, Copy, Check } from '@phosphor-icons/react'
 
 const ElementsSideBar = () => {
+  const { isOpen, diagramName, setDiagramName } = useDiagram()
+  const { successAlert } = useAlert()
+  const { id } = useParams()
+  const { toObject } = useReactFlow()
+  const { saveFlowData } = useDiagramActions()
+  const [textIsCopied, setTextIsCopied] = useState(false)
 
-    const { isOpen, diagramName, setDiagramName } = useDiagram();
+  const copyIdToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      successAlert('ID copiado!')
+      setTextIsCopied(true)
+      setTimeout(() => setTextIsCopied(false), 5000)
+    })
+  }
 
-    const { successAlert } = useAlert();
+  return (
+    <aside
+      className={`bg-[#0a0a1a] border-r border-white/[0.06] h-full shrink-0 flex flex-col overflow-x-hidden overflow-y-auto transition-all duration-300 ease-out select-none ${
+        isOpen ? 'w-[300px] lg:w-[320px]' : 'w-0'
+      }`}
+      style={{
+        scrollbarWidth: 'thin',
+        scrollbarColor: 'rgba(139,92,246,0.25) transparent',
+      }}
+    >
+      {isOpen && (
+        <div className="flex flex-col p-5 pt-6 opacity-0 animate-fadeIn">
+          {/* Project name */}
+          <div className="mb-6" id="edit-area">
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2.5">
+              Projeto
+            </label>
+            <input
+              type="text"
+              value={diagramName}
+              onChange={(e) => setDiagramName(e.target.value)}
+              className="w-full px-4 py-3 text-sm bg-white/[0.04] text-white border border-white/[0.08] rounded-xl focus:outline-none focus:border-violet-500/50 transition-colors placeholder-gray-600"
+              placeholder="Nome do projeto..."
+            />
+          </div>
 
-    const { id } = useParams();
+          {/* Action buttons */}
+          <div className="flex gap-2.5 mb-4">
+            <button
+              onClick={() => saveFlowData(id, toObject, diagramName)}
+              className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold text-white bg-violet-600 hover:bg-violet-500 rounded-xl transition-colors cursor-pointer"
+            >
+              <FloppyDisk size={16} weight="bold" />
+              Salvar
+            </button>
+            <button
+              onClick={() => copyIdToClipboard(id)}
+              className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-medium text-gray-300 bg-white/[0.06] hover:bg-white/[0.10] rounded-xl transition-colors cursor-pointer"
+            >
+              {textIsCopied ? (
+                <><Check size={16} weight="bold" className="text-green-400" /> Copiado</>
+              ) : (
+                <><Copy size={16} weight="bold" /> Copiar ID</>
+              )}
+            </button>
+          </div>
 
-    const { toObject } = useReactFlow();
+          <div className="flex gap-2.5 mb-6">
+            <ShareButton />
+            <TutorialButton />
+          </div>
 
-    const { saveFlowData } = useDiagramActions();
+          {/* Divider */}
+          <div className="h-px w-full bg-white/[0.06] mb-5" />
 
-    const [textIsCopied, setTextIsCopied] = useState(false);
-
-    const copyIdToClipboard = (text) => {
-        navigator.clipboard.writeText(text).then(() => {
-            successAlert('ID do diagrama copiado para a área de transferência!');
-            setTextIsCopied(true);
-            setTimeout(() => setTextIsCopied(false), 8000);
-        });
-    };
-
-    return (
-        <aside className={`font-bold text-lg bg-gray-900 sidebar-scroll h-full shrink-0 flex flex-col items-center overflow-x-hidden overflow-y-visible transition-all duration-500 select-none ease-out ${isOpen ? "w-[50%] md:w-[35%] lg:w-[30%] xl:w-[20%] p-4" : "w-0"} pt-12`}>
-            {isOpen && (
-                <>
-                    <div className='w-full h-auto mb-2 ml-5' id='edit-area'>
-                        <div className="flex flex-col justify-start items-start mb-6 gap-2 opacity-0 animate-fadeIn w-full relative">
-                            <h2 className='text-lg xl:text-xl ml-9 md:ml-3 text-white mb-4 self-start'>Projeto</h2>
-                            <input
-                                type="text"
-                                value={diagramName}
-                                onChange={(e) => setDiagramName(e.target.value)}
-                                className="w-[85%] px-3 py-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:border-purple-500 focus:bg-gray-600 transition-colors text-md lg:text-lg font-normal placeholder-gray-400 min-h-13"
-                                placeholder="Digite o nome do diagrama..."
-                            />
-                        </div>
-                        <div className="flex flex-col justify-start items-start mb-2 gap-2 opacity-0 animate-fadeIn w-full relative z-40">
-                            <button onClick={() => saveFlowData(id, toObject, diagramName)} className='flex justify-center items-center w-[90%] md:w-[70%] h-auto rounded-xl bg-green-600
-                            border-2 border-green-600 text-white font-bold py-2 px-3 cursor-pointer text-sm xl:text-lg gap-2
-                            hover:text-green-600 hover:bg-gray-800 hover:border-green-500 transition-all hover:translate-y-[-3px] duration-600 whitespace-nowrap'>
-                                <span className="material-symbols-outlined"> upload </span>Salvar</button>
-                            <button onClick={() => copyIdToClipboard(id)} className={`flex justify-center items-center w-[90%] md:w-[70%] h-auto rounded-xl bg-blue-600
-                            border-2 border-blue-600 text-white font-bold py-2 px-3 cursor-pointer text-sm xl:text-lg gap-2
-                            hover:text-blue-600 hover:bg-gray-800 hover:border-blue-500 transition-all hover:translate-y-[-3px] duration-600 whitespace-nowrap
-                            ${textIsCopied ? 'text-white!' : ''}
-                            `}>
-                                {textIsCopied ? (<>
-                                    <span className="material-symbols-outlined"> check_circle </span>
-                                    <span>ID copiado!</span>
-                                </>) : (
-                                    <>
-                                        <span className="material-symbols-outlined"> content_copy </span>
-                                        <span>Copiar ID</span>
-                                    </>)}</button>
-                            <ShareButton />
-                        </div>
-                    </div>
-                    <TutorialButton />
-
-
-                    <div id='element-list' className='opacity-0 animate-fadeIn relative z-30'>
-                        <h2 className='lg:text-lg xl:text-xl ml-9 md:ml-3 text-white self-start'>Elementos</h2>
-                        <div className='flex flex-col flex-wrap gap-4 my-12 m-3 ml-2'>
-                            <ElementList
-                            />
-                        </div>
-                    </div>
-                </>
-            )}
-        </aside>
-    );
+          {/* Elements */}
+          <div className="flex flex-col gap-1" id="element-list">
+            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+              Elementos
+            </span>
+            <ElementList />
+          </div>
+        </div>
+      )}
+    </aside>
+  )
 }
 
 export default ElementsSideBar
